@@ -57,11 +57,15 @@ class LoginScreenState extends State<LoginScreen> {
 
     isLoggedIn = await googleSignIn.isSignedIn();
     if (isLoggedIn) {
-      Navigator.push(
-        context,
-        //MaterialPageRoute(builder: (context) => MainScreen(currentUserId: prefs.getString('id'))),
-        MaterialPageRoute(builder: (context) => MyApp()),
-      );
+
+      print("** login isLogged in??? ** ");
+
+//      Navigator.push(
+//        context,
+//        ///MaterialPageRoute(builder: (context) => MainScreen(currentUserId: prefs.getString('id'))),
+//        MaterialPageRoute(builder: (context) => MyApp()),
+//      );
+
     }
 
     this.setState(() {
@@ -70,21 +74,31 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Future<Null> handleSignIn() async {
+    print("** login handleSignIn ** ");
     prefs = await SharedPreferences.getInstance();
 
     this.setState(() {
       isLoading = true;
     });
 
-    GoogleSignInAccount googleUser = await googleSignIn.signIn();
-    GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    // Init firebaseUser
+    FirebaseUser firebaseUser;
 
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+    try {
+      GoogleSignInAccount googleUser = await googleSignIn.signIn();
+      GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
-    FirebaseUser firebaseUser = await firebaseAuth.signInWithCredential(credential);
+      final AuthCredential credential = GoogleAuthProvider.getCredential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      firebaseUser = await firebaseAuth.signInWithCredential(
+          credential);
+    } catch (e) {
+    print("** exception -> ** " + e.toString());
+    throw Error();
+    }
 
     if (firebaseUser != null) {
       // Check is already sign up
@@ -96,32 +110,32 @@ class LoginScreenState extends State<LoginScreen> {
         Firestore.instance
             .collection('users')
             .document(firebaseUser.uid)
-            .setData({'nickname': firebaseUser.displayName, 'photoUrl': firebaseUser.photoUrl, 'id': firebaseUser.uid});
+            .setData({'firstName': firebaseUser.displayName});
 
         // Write data to local
         currentUser = firebaseUser;
         await prefs.setString('id', currentUser.uid);
-        await prefs.setString('nickname', currentUser.displayName);
-        await prefs.setString('photoUrl', currentUser.photoUrl);
+        await prefs.setString('firstName', currentUser.displayName);
       } else {
         // Write data to local
         await prefs.setString('id', documents[0]['id']);
-        await prefs.setString('nickname', documents[0]['nickname']);
-        await prefs.setString('photoUrl', documents[0]['photoUrl']);
-        await prefs.setString('aboutMe', documents[0]['aboutMe']);
+        await prefs.setString('firatName', documents[0]['firstName']);
       }
       //Fluttertoast.showToast(msg: "Sign in success");
       this.setState(() {
         isLoading = false;
       });
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => MyApp(
-              ///currentUserId: firebaseUser.uid,
-            )),
-      );
+      print("** before nav push ** ");
+//      Navigator.push(
+//        context,
+//        MaterialPageRoute(
+//            builder: (context) => MyApp(
+//
+//              ///currentUserId: firebaseUser.uid,
+//            )),
+//      );
+
     } else {
       //Fluttertoast.showToast(msg: "Sign in fail");
       this.setState(() {
