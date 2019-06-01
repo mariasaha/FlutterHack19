@@ -5,7 +5,6 @@ import 'package:flutterhack/screens/add_review.dart';
 import 'package:flutterhack/screens/detail_page.dart';
 import 'package:flutterhack/screens/resources_list.dart';
 import 'package:flutterhack/screens/review_list_page.dart';
-import 'babynames.dart';
 
 void main() => runApp(MyApp());
 

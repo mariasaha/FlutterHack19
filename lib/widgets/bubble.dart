@@ -15,7 +15,6 @@ class Bubble extends StatefulWidget {
   final double _bubbleFontSize;
   final bool _pointBot;
   final GlobalKey<BubbleState> key;
-  final int _currentIndex;
   final Function(int v) _onUpdate;
 
   Bubble(
@@ -31,7 +30,6 @@ class Bubble extends StatefulWidget {
       this._arrowWidth,
       this._arrowHeight,
       this._bubbleFontSize,
-      this._currentIndex,
       this._onUpdate)
       : this._verticalFactor = _pointBot ? 1 : -1,
         super(key: key);

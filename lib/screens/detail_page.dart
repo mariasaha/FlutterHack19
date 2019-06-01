@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterhack/data/boelens_bloc_provider.dart';
 import 'package:flutterhack/data/detail_bloc.dart';
 import 'package:flutterhack/data/resource_model.dart';
-import 'package:flutterhack/data/review_model.dart';
-import 'package:flutterhack/widgets/review_widget.dart';
 
 class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {

@@ -79,7 +79,6 @@ class _AddReviewPageState extends State<AddReviewPage> {
                   pointerFrameWidth: 130.0,
                   strokeColor: Colors.white,
                   strokeWidth: 1.0,
-                  // currentIndex = _difficulty,
                   onUpdate: (v) {
                     _difficulty = v;
                   }),

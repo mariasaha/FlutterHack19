@@ -46,7 +46,7 @@ class Gauge extends StatelessWidget {
         //     strokeColor, strokeWidth, arrowWidth, arrowHeight, bubbleFontSize),
         new Bar(gaugeWidth, barHeight, cellDataList, strokeColor, strokeWidth),
         new Bubble(botBubbleKey, bubbleText, gaugeWidth, pointerFrameWidth, pointerFrameHeight, cellDataList, false,
-            strokeColor, strokeWidth, arrowWidth, arrowHeight, bubbleFontSize, currentIndex, onUpdate),
+            strokeColor, strokeWidth, arrowWidth, arrowHeight, bubbleFontSize, onUpdate),
       ],
     );
   }
