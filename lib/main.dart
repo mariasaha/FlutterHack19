@@ -60,28 +60,27 @@ class MyApp extends StatelessWidget {
     }
 
     if (settings.name == '/addreview') {
-      // final bloc = DetailBloc(resourceId: 'p6mNorotnbnWwImJBLXM');
+      final bloc = DetailBloc(resourceId: 'p6mNorotnbnWwImJBLXM');
       return MaterialPageRoute(
           settings: settings,
           builder: (BuildContext context) {
-            return AddReviewPage();
-            // return BoelensBlocProvider<DetailBloc>(
-            //   bloc: bloc,
-            //   child: ReviewListPage(),
-            // );
+            return BoelensBlocProvider<DetailBloc>(
+              bloc: bloc,
+              child: AddReviewPage(),
+            );
           });
     }
 
-      final bloc = ResourceListBloc();
-      return MaterialPageRoute(
-        settings: settings,
-        builder: (BuildContext context) {
-          return BoelensBlocProvider<ResourceListBloc>(
-            bloc: bloc,
-            child: ListScreen(),
-          );
-        },
-      );
+    final bloc = ResourceListBloc();
+    return MaterialPageRoute(
+      settings: settings,
+      builder: (BuildContext context) {
+        return BoelensBlocProvider<ResourceListBloc>(
+          bloc: bloc,
+          child: ListScreen(),
+        );
+      },
+    );
   }
 // =======
 //  @override
