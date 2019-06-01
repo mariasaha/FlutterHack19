@@ -28,8 +28,8 @@ class AddReviewPage extends StatefulWidget {
 }
 
 class _AddReviewPageState extends State<AddReviewPage> {
-  int _rating;
-  int _difficulty;
+  int _rating = 3;
+  int _difficulty = 4;
   TextEditingController descriptionController = TextEditingController();
 
   void _saveReview() {
@@ -63,7 +63,7 @@ class _AddReviewPageState extends State<AddReviewPage> {
                     child: UserWidget(),
                   ),
                   FlutterRatingBar(
-                    initialRating: 3,
+                    initialRating: _rating.toDouble(),
                     fillColor: Colors.amber,
                     borderColor: Colors.amber.withAlpha(50),
                     allowHalfRating: false,
@@ -77,7 +77,6 @@ class _AddReviewPageState extends State<AddReviewPage> {
                         arrowHeight: 20.0,
                         arrowWidth: 20.0,
                         barHeight: 50.0,
-                        // bubbleText: "Diffculty",
                         bubbleFontSize: 15.0,
                         cellDataList: [
                           CellData(Color(0xFFB2D624), "Extremely easy", rightGap: 0.5),
