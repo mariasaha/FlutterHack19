@@ -5,7 +5,7 @@ import 'package:flutterhack/data/resource_model.dart';
 import 'package:flutterhack/data/user_bloc.dart';
 import 'package:flutterhack/widgets/user_widget.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
   Widget _buildTags(List<String> tags) {
@@ -66,8 +66,21 @@ class DetailPage extends StatelessWidget {
                   Text('Flutter Version: ${res.flutterVersion}'),
                   Text('Reported Difficulty: ${res.reportedDifficulty}'),
                   Text('Publish Date: ${res.publishDate}'),
-                  Text('Repo URL: ${res.repoUrl}'),
-                  Text('Video URL: ${res.videoUrl}'),
+                  SizedBox(height:10.0),
+                  GestureDetector(
+                    onTap: () {
+                      _launchInWebViewOrVC(res.repoUrl);
+                    },
+                    child: Text('Repo URL', style: TextStyle(color:Colors.blue)),
+                  ),
+                  SizedBox(height:10.0),
+                  GestureDetector(
+                    onTap: () { 
+                      _launchInWebViewOrVC(res.videoUrl);
+                    },
+                    child: Text('Link Video URL', style:TextStyle(color:Colors.blue)),
+                  ),
+                  SizedBox(height:10.0),
                   _buildTags(res.tags),
                   SizedBox(height: 30.0),
                   FlatButton(
@@ -88,4 +101,13 @@ class DetailPage extends StatelessWidget {
           );
         });
   }
+
+  Future<Null> _launchInWebViewOrVC(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: true, forceWebView: true);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
 }
