@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterhack/boelens_bloc_provider.dart';
 import 'package:flutterhack/detail_bloc.dart';
 import 'package:flutterhack/resource_model.dart';
-import 'package:flutterhack/review_model.dart';
-import 'package:flutterhack/review_widget.dart';
+import 'package:flutterhack/user_bloc.dart';
+import 'package:flutterhack/user_widget.dart';
 
 class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -17,6 +17,7 @@ class DetailPage extends StatelessWidget {
             );
           }
           final res = resource.data;
+          final authorBloc = UserBloc(userId: res.authorId);
           return Scaffold(
             //floatingActionButton:
             appBar: AppBar(title: Text(res.title)),
@@ -27,7 +28,11 @@ class DetailPage extends StatelessWidget {
                 Text('Dart Version:  ${res.dartVersion}'),
                 Text('Flutter Version: ${res.flutterVersion}'),
                 Text('Average Rating:  ${res.averageRating}'),
-                Text('Author:  ${res.authorId}'),
+                Text('Author:  '),
+                BoelensBlocProvider<UserBloc>(
+                  bloc: authorBloc,
+                  child: UserWidget(),
+                ),
                 Text('Reported Difficulty: ${res.reportedDifficulty}'),
                 Text('Publish Date: ${res.publishDate}'),
                 Text('Repo URL: ${res.repoUrl}'),
