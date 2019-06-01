@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterhack/data/boelens_bloc_provider.dart';
+import 'package:flutterhack/data/resource_list_bloc.dart';
 import 'package:flutterhack/models/hardcoded_resource.dart';
 import 'package:flutterhack/widgets/resource_tile.dart';
 
