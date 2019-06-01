@@ -30,7 +30,7 @@ class StarDisplay extends StarDisplayWidget {
     key: key,
     value: value,
     filledStar: const Icon(Icons.star, color: Colors.indigo),
-    unfilledStar: const Icon(Icons.star_border, color: Colors.indigo),
+    unfilledStar: const Icon(Icons.star_border, color: Colors.indigo[200]),
   );
 }
 

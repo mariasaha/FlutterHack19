@@ -27,12 +27,12 @@ class ResourceTileState extends State<ResourceTile> {
         break;
 
       case Level.intermediate:
-        color = Colors.yellowAccent;
+        color = Colors.yellow;
         text = 'Intermediate';
         break;
 
       case Level.advanced:
-        color = Colors.redAccent;
+        color = Colors.deepOrangeAccent;
         text = 'Advanced';
         break;
     }
@@ -116,7 +116,7 @@ class ResourceTileState extends State<ResourceTile> {
 
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, right: 20.0),
-      child: Icon(icon, size: 50.0, color: Colors.indigoAccent)
+      child: Icon(icon, size: 50.0, color: Colors.indigo)
     );
   }
 
