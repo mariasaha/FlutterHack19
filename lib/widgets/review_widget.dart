@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterhack/review_model.dart';
+import 'package:flutterhack/data/review_model.dart';
 
 class ReviewWidget extends StatelessWidget {
-
   final ReviewModel review;
   ReviewWidget({this.review});
 
@@ -16,6 +15,4 @@ class ReviewWidget extends StatelessWidget {
       Text('Review:  ${review.review}'),
     ]);
   }
-
-
 }

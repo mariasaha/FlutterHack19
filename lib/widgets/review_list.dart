@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutterhack/boelens_bloc_provider.dart';
-import 'package:flutterhack/detail_bloc.dart';
-import 'package:flutterhack/review_model.dart';
-import 'package:flutterhack/review_widget.dart';
+import 'package:flutterhack/data/boelens_bloc_provider.dart';
+import 'package:flutterhack/data/detail_bloc.dart';
+import 'package:flutterhack/data/review_model.dart';
+import 'package:flutterhack/widgets/review_widget.dart';
 
 class ReviewList extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final bloc = BoelensBlocProvider.of<DetailBloc>(context);
@@ -23,5 +22,4 @@ class ReviewList extends StatelessWidget {
       },
     );
   }
-
 }

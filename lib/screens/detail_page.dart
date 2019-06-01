@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterhack/boelens_bloc_provider.dart';
-import 'package:flutterhack/detail_bloc.dart';
-import 'package:flutterhack/resource_model.dart';
-import 'package:flutterhack/review_model.dart';
-import 'package:flutterhack/review_widget.dart';
+import 'package:flutterhack/data/boelens_bloc_provider.dart';
+import 'package:flutterhack/data/detail_bloc.dart';
+import 'package:flutterhack/data/resource_model.dart';
+import 'package:flutterhack/data/review_model.dart';
+import 'package:flutterhack/widgets/review_widget.dart';
 
 class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -39,6 +39,12 @@ class DetailPage extends StatelessWidget {
                     Navigator.of(context).pushNamed('/reviewlist');
                   },
                   child: Text('Reviews'),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/addreview');
+                  },
+                  child: Text('Add Review'),
                 )
               ],
             ),

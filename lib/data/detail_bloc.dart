@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutterhack/resource_model.dart';
-import 'package:flutterhack/review_model.dart';
+import 'package:flutterhack/data/resource_model.dart';
+import 'package:flutterhack/data/review_model.dart';
 import 'package:rxdart/rxdart.dart';
 import 'boelens_bloc_provider.dart';
 
@@ -9,8 +9,8 @@ class DetailBloc extends BlocBase {
 
   DetailBloc({this.resourceId}) {
     print('[resource_bloc] ctor');
-     _fetchResource(resourceId);
-     _fetchReviews(resourceId);
+    _fetchResource(resourceId);
+    _fetchReviews(resourceId);
   }
 
   final _resourceSubject = BehaviorSubject<ResourceModel>();
@@ -28,10 +28,7 @@ class DetailBloc extends BlocBase {
   }
 
   _fetchResource(String resourceId) {
-    Firestore.instance
-        .collection("resources").document(resourceId)
-        .snapshots()
-        .listen((DocumentSnapshot ds) {
+    Firestore.instance.collection("resources").document(resourceId).snapshots().listen((DocumentSnapshot ds) {
       print('[resource_bloc] got new resource $resourceId');
       final res = ResourceModel.fromSnapshot(ds);
       _resourceSubject.sink.add(res);
@@ -39,17 +36,17 @@ class DetailBloc extends BlocBase {
   }
 
   _fetchReviews(String resourceId) {
-        Firestore.instance
-        .collection("reviews").where(ReviewModel.RESOURCE_ID, isEqualTo: resourceId)
+    Firestore.instance
+        .collection("reviews")
+        .where(ReviewModel.RESOURCE_ID, isEqualTo: resourceId)
         .snapshots()
         .listen((QuerySnapshot qs) {
       print('[resource_bloc] got new set of reviews for $resourceId');
       List<ReviewModel> list = [];
-      for(DocumentSnapshot ds in qs.documents) {
+      for (DocumentSnapshot ds in qs.documents) {
         list.add(ReviewModel.fromSnapshot(ds));
       }
       _reviewsSubject.sink.add(list);
     });
   }
-
 }

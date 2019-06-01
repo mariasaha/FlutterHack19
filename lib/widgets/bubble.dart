@@ -15,7 +15,8 @@ class Bubble extends StatefulWidget {
   final double _bubbleFontSize;
   final bool _pointBot;
   final GlobalKey<BubbleState> key;
-  final Function(int v) onUpdate;
+  final int _currentIndex;
+  final Function(int v) _onUpdate;
 
   Bubble(
       this.key,
@@ -30,7 +31,8 @@ class Bubble extends StatefulWidget {
       this._arrowWidth,
       this._arrowHeight,
       this._bubbleFontSize,
-      this.onUpdate)
+      this._currentIndex,
+      this._onUpdate)
       : this._verticalFactor = _pointBot ? 1 : -1,
         super(key: key);
 
@@ -42,20 +44,19 @@ class BubbleState extends State<Bubble> with SingleTickerProviderStateMixin {
   double _pointerRatio = 0.5;
   Animation<double> animation;
   AnimationController controller;
-  int index;
+  int _index;
 
   BubbleState();
 
   initState() {
     super.initState();
+    print("init state $_pointerRatio");
     controller = AnimationController(vsync: this);
-    index = _getGaugeIndex();
+    _index = _getGaugeIndex();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Color color = _getColor(index);
-
     return Container(
       width: widget._barWidth,
       height: widget._bubbleHeight,
@@ -71,9 +72,9 @@ class BubbleState extends State<Bubble> with SingleTickerProviderStateMixin {
                   child: new GestureDetector(
                     onHorizontalDragUpdate: (dragDetails) {
                       int index = _getGaugeIndex();
-                      if (index != this.index) {
-                        this.index = index;
-                        widget.onUpdate(this.index);
+                      if (index != _index) {
+                        _index = index;
+                        widget._onUpdate(_index);
                       }
                       setState(() => _pointerRatio = _updatePositionX(dragDetails.delta.dx));
                     },
@@ -85,7 +86,7 @@ class BubbleState extends State<Bubble> with SingleTickerProviderStateMixin {
                           controller.isAnimating ? animation.value : _pointerRatio,
                           widget._bubbleWidth,
                           widget._bubbleHeight,
-                          _getColor(this.index),
+                          _getColor(_index),
                           widget._strokeWidth,
                           widget._strokeColor,
                           widget._arrowWidth,

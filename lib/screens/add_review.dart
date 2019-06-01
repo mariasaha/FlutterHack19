@@ -1,36 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutterhack/data/review_model.dart';
 
 import 'package:flutterhack/widgets/slider.dart';
 import 'package:flutterhack/widgets/cell.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Felp'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class AddReviewPage extends StatefulWidget {
+  AddReviewPage({Key key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -44,22 +20,17 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _AddReviewPageState createState() => _AddReviewPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _AddReviewPageState extends State<AddReviewPage> {
+  int _rating;
+  int _difficulty;
   TextEditingController descriptionController = TextEditingController();
 
   void _saveReview() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+    ReviewModel.addReview(difficulty: _difficulty, rating: _rating, review: descriptionController.text);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -67,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('widget.title'),
       ),
       body: Center(
         child: Column(
@@ -80,9 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
               initialRating: 3,
               fillColor: Colors.amber,
               borderColor: Colors.amber.withAlpha(50),
-              allowHalfRating: true,
+              allowHalfRating: false,
               onRatingUpdate: (rating) {
-                print(rating);
+                _rating = rating.toInt();
               },
             ),
             Padding(
@@ -108,9 +79,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   pointerFrameWidth: 130.0,
                   strokeColor: Colors.white,
                   strokeWidth: 1.0,
-                  // gaugeController: gaugeCo
+                  // currentIndex = _difficulty,
                   onUpdate: (v) {
-                    print("value $v");
+                    _difficulty = v;
                   }),
             ),
             Padding(

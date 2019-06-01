@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterhack/review_list.dart';
+import 'package:flutterhack/widgets/review_list.dart';
 
 class ReviewListPage extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -8,5 +8,4 @@ class ReviewListPage extends StatelessWidget {
       body: ReviewList(),
     );
   }
-
 }
