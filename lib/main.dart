@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'babynames.dart';
+import 'package:flutterhack/screens/list.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,7 +8,10 @@ class MyApp extends StatelessWidget {
  Widget build(BuildContext context) {
    return MaterialApp(
      title: 'Learn Flutter Tool',
-     home: BabyNamesPage(),
+     home: ListScreen(),
+     theme: ThemeData(
+       primaryColor: Colors.white,
+     ),
    );
  }
 }
