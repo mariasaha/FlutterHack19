@@ -55,7 +55,7 @@ class DetailPage extends StatelessWidget {
                       itemCount: 5,
                       itemSize: 15.0,
                       fillColor: Colors.indigo,
-                      emptyColor: Colors.amber.withAlpha(50),
+                      emptyColor: Colors.indigo.withAlpha(40),
                     ),
                   ),
                   Padding(

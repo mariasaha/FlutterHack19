@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterhack/models/hardcoded_resource.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'dart:math';
 
 class ResourceTile extends StatefulWidget {
   const ResourceTile({
@@ -52,6 +53,12 @@ class ResourceTileState extends State<ResourceTile> {
   }
 
   Widget _buildRating() {
+    Random rnd;
+    int min = 50;
+    int max = 1000;
+    rnd = new Random();
+    int r = min + rnd.nextInt(max - min);
+
     return Row(
       children: <Widget>[
         Expanded(
@@ -61,10 +68,10 @@ class ResourceTileState extends State<ResourceTile> {
             itemCount: 5,
             itemSize: 15.0,
             fillColor: Colors.indigo,
-            emptyColor: Colors.amber.withAlpha(50),
+            emptyColor: Colors.indigo.withAlpha(40),
           ),
         ),
-        Expanded(flex: 1, child: Text('${widget.resource.numReviews} reviews'))
+        Expanded(flex: 1, child: Text('${r} reviews'))
       ],
     );
   }
