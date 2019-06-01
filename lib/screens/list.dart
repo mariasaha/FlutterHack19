@@ -66,7 +66,7 @@ class ListScreen extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemBuilder: (BuildContext context, int inx) {
                 final r = list.data[inx];
-                final HardcodedResource hcr = HardcodedResource(r.title, r.reportedDifficulty.toDouble(), 7,
+                final HardcodedResource hcr = HardcodedResource(r.title, r.reportedDifficulty.toDouble(), r.reportedDifficulty,
                     r.averageRating.toInt(), r.dartVersion, r.flutterVersion, PrimaryType.video, r.tags, r.repoUrl, 89);
                 return _buildResource(context, hcr);
               },
