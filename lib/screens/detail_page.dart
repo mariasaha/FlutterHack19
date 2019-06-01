@@ -4,7 +4,8 @@ import 'package:flutterhack/data/detail_bloc.dart';
 import 'package:flutterhack/data/resource_model.dart';
 import 'package:flutterhack/data/user_bloc.dart';
 import 'package:flutterhack/widgets/user_widget.dart';
-import 'package:flutterhack/widgets/star_display.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 
 class DetailPage extends StatelessWidget {
   Widget _buildTags(List<String> tags) {
@@ -49,7 +50,13 @@ class DetailPage extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 1,
-                    child: StarDisplay(value: res.averageRating.round()),
+                    child: FlutterRatingBarIndicator(
+                      rating: res.averageRating.toDouble(),
+                      itemCount: 5,
+                      itemSize: 15.0,
+                      fillColor: Colors.indigo,
+                      emptyColor: Colors.amber.withAlpha(50),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
