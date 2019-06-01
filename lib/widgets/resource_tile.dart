@@ -100,11 +100,11 @@ class ResourceTileState extends State<ResourceTile> {
     rnd = new Random();
     int r = min + rnd.nextInt(max - min);
 
-    if (r < 3) {
+    if (r < 4) {
       icon = Icons.description;
-    } else if (r < 6) {
+    } else if (r < 8) {
       icon = Icons.video_library;
-    } else if (r < 9) {
+    } else if (r < 10) {
       icon = Icons.code;
     } else {
       icon = Icons.audiotrack;
