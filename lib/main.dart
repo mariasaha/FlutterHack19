@@ -4,22 +4,18 @@ import 'package:flutterhack/data/detail_bloc.dart';
 import 'package:flutterhack/screens/add_review.dart';
 import 'package:flutterhack/screens/detail_page.dart';
 import 'package:flutterhack/screens/list.dart';
-import 'package:flutterhack/screens/resources_list.dart';
 import 'package:flutterhack/screens/review_list_page.dart';
-// =======
-// import 'package:flutterhack/screens/list.dart';
-// >>>>>>> origin/ericadu/list
+import 'data/resource_list_bloc.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Learn Flutter Tool',
       onGenerateRoute: _getRoute,
-      initialRoute: '/home',
+      //initialRoute: '/home',
       //home: BabyNamesPage(),
     );
   }
@@ -39,11 +35,16 @@ class MyApp extends StatelessWidget {
 
     //erica home screen
     if (settings.name == '/home') {
+      final bloc = ResourceListBloc();
       return MaterialPageRoute(
-          settings: settings,
-          builder: (BuildContext context) {
-            return ListScreen(); 
-          });
+        settings: settings,
+        builder: (BuildContext context) {
+          return BoelensBlocProvider<ResourceListBloc>(
+            bloc: bloc,
+            child: ListScreen(),
+          );
+        },
+      );
     }
 
     if (settings.name == '/reviewlist') {
@@ -71,11 +72,16 @@ class MyApp extends StatelessWidget {
           });
     }
 
-    return MaterialPageRoute(
+      final bloc = ResourceListBloc();
+      return MaterialPageRoute(
         settings: settings,
         builder: (BuildContext context) {
-          return ResourcesListPage();
-        });
+          return BoelensBlocProvider<ResourceListBloc>(
+            bloc: bloc,
+            child: ListScreen(),
+          );
+        },
+      );
   }
 // =======
 //  @override

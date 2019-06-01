@@ -31,4 +31,26 @@ class ResourceListBloc extends BlocBase {
     });
   }
 
+  _fetchSearchResources(String searchString) {
+    Firestore.instance
+        .collection("resources").where(ResourceModel.DESC, arrayContains: searchString)
+        .snapshots()
+        .listen((QuerySnapshot qs) {
+      List<ResourceModel> list = [];
+      print('search has ${qs.documents.length} items');
+      int cnt = 0;
+      for(DocumentSnapshot ds in qs.documents) {
+        final res = ResourceModel.fromSnapshot(ds);
+        print('search $cnt: ${res.desc}');
+        list.add(res);
+        cnt++;
+      }
+      _resourcesSubject.sink.add(list);
+    });
+  }
+
+  updateSearch(String searchStr) {
+    _fetchSearchResources(searchStr);
+  }
+
 }
