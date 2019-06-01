@@ -14,7 +14,6 @@ class Gauge extends StatelessWidget {
   final double arrowHeight;
   final double bubbleFontSize;
   final String bubbleText;
-  final int currentIndex;
   final int Function(int value) onUpdate;
 
   final topBubbleKey = GlobalKey<BubbleState>();
@@ -34,7 +33,6 @@ class Gauge extends StatelessWidget {
       @required this.arrowHeight,
       @required this.bubbleFontSize,
       @required this.bubbleText,
-      @required this.currentIndex,
       @required this.onUpdate});
 
   @override

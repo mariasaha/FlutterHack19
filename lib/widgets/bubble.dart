@@ -96,7 +96,7 @@ class BubbleState extends State<Bubble> with SingleTickerProviderStateMixin {
                               ? EdgeInsets.only(bottom: widget._arrowHeight, right: 4.0, left: 4.0)
                               : EdgeInsets.only(top: widget._arrowHeight, right: 4.0, left: 4.0),
                           child: Center(
-                              child: new Text(widget._bubbleText,
+                              child: new Text(_getText(_index),
                                   style: new TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: widget._strokeColor,
@@ -162,6 +162,10 @@ class BubbleState extends State<Bubble> with SingleTickerProviderStateMixin {
 
   Color _getColor(int index) {
     return widget._cellDataList[index].color;
+  }
+
+  String _getText(int index) {
+    return widget._cellDataList[index].text;
   }
 }
 

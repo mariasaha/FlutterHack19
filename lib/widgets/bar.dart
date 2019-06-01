@@ -40,7 +40,7 @@ class Bar extends StatelessWidget {
         color: cellData.color,
         strokeColor: _strokeColor,
         strokeWidth: _strokeWidth,
-        contentString: cellData.text,
+        //contentString: cellData.text,
         ratioTL: -_leftGap,
         ratioBL: _leftGap,
         ratioBR: cellData == cellDataList.last ? 0.0 : -_rightGap,
