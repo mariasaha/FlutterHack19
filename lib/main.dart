@@ -4,13 +4,8 @@ import 'package:flutterhack/data/detail_bloc.dart';
 import 'package:flutterhack/screens/add_review.dart';
 import 'package:flutterhack/screens/detail_page.dart';
 import 'package:flutterhack/screens/list.dart';
-import 'package:flutterhack/screens/resources_list.dart';
 import 'package:flutterhack/screens/review_list_page.dart';
-
 import 'data/resource_list_bloc.dart';
-// =======
-// import 'package:flutterhack/screens/list.dart';
-// >>>>>>> origin/ericadu/list
 
 void main() => runApp(MyApp());
 
@@ -20,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Learn Flutter Tool',
       onGenerateRoute: _getRoute,
-      initialRoute: '/home',
+      //initialRoute: '/home',
       //home: BabyNamesPage(),
     );
   }
@@ -77,11 +72,16 @@ class MyApp extends StatelessWidget {
           });
     }
 
-    return MaterialPageRoute(
+      final bloc = ResourceListBloc();
+      return MaterialPageRoute(
         settings: settings,
         builder: (BuildContext context) {
-          return ResourcesListPage();
-        });
+          return BoelensBlocProvider<ResourceListBloc>(
+            bloc: bloc,
+            child: ListScreen(),
+          );
+        },
+      );
   }
 // =======
 //  @override
