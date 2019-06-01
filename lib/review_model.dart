@@ -5,7 +5,7 @@ class ReviewModel  {
 
   static const String POSTER_ID = 'posterId';
   static const String POST_DATE = 'postDate';
-  static const String REPORTED_DIFFICULTY = 'diffultyRating';
+  static const String REPORTED_DIFFICULTY = 'difficultyRating';
   static const String RATING = 'rating';
   static const String REVIEW = 'review';
   static const String RESOURCE_ID = 'resourceId';

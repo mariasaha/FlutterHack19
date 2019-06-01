@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterhack/boelens_bloc_provider.dart';
 import 'package:flutterhack/detail_bloc.dart';
 import 'package:flutterhack/detail_page.dart';
+import 'package:flutterhack/review_list_page.dart';
 import 'babynames.dart';
 
 void main() => runApp(MyApp());
@@ -26,6 +27,19 @@ class MyApp extends StatelessWidget {
          return BoelensBlocProvider<DetailBloc>(
            bloc: bloc,
            child: DetailPage(),
+         );
+       }
+     );
+   }
+
+  if( settings.name == '/reviewlist') {
+     final bloc = DetailBloc(resourceId: 'p6mNorotnbnWwImJBLXM');
+     return MaterialPageRoute(
+       settings:settings,
+       builder: (BuildContext context) {
+         return BoelensBlocProvider<DetailBloc>(
+           bloc: bloc,
+           child: ReviewListPage(),
          );
        }
      );

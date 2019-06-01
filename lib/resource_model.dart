@@ -13,8 +13,10 @@ class ResourceModel  {
   static const String REPORTED_DIFFICULTY = 'reportedDifficulty';
   static const String TITLE = 'title';
   static const String VIDEO_URL = 'videoUrl';
+  static const String TAGS = 'tags';
 
-  final String authorId;
+  final String authorId; 
+  final List<String> tags;
   final double averageRating;
   final String dartVersion;
   final String desc;
@@ -43,6 +45,7 @@ class ResourceModel  {
         repoUrl = map[REPO_URL],
         reportedDifficulty = map[REPORTED_DIFFICULTY],
         videoUrl = map[VIDEO_URL],
+        tags = List.from(map[TAGS]),
 
         id = reference.documentID;
 
