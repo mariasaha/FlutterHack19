@@ -12,14 +12,16 @@ class ReviewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = UserBloc(userId: review.posterId);
     return Column(children: <Widget>[
-      BoelensBlocProvider<UserBloc>(
-        bloc: bloc,
-        child: UserWidget(),
+      Container(width: double.infinity, 
+              child: BoelensBlocProvider<UserBloc>(
+          bloc: bloc,
+          child: UserWidget(),
+        ),
       ),
-      Text('Post date:  ${review.postDate}'),
-      Text('Rating:  ${review.rating}'),
-      Text('Difficulty:  ${review.reportedDifficulty}'),
-      Text('Review:  ${review.review}'),
+      Container(width: double.infinity, child: Text('Post date:  ${review.postDate}')),
+      Container(width: double.infinity, child: Text('Rating:  ${review.rating}')),
+      Container(width: double.infinity, child: Text('Difficulty:  ${review.reportedDifficulty}')),
+      Container(width: double.infinity, child: Text('Review:  ${review.review}')),
     ]);
   }
 }

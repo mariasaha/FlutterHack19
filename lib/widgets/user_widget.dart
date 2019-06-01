@@ -12,7 +12,7 @@ class UserWidget extends StatelessWidget {
       stream: bloc.user,
       builder: (context, AsyncSnapshot<UserModel> user) {
         if( !user.hasData ) return SizedBox(height:0.0);
-        return Text('${user.data.firstName} ${user.data.lastName}');
+        return Text('${user.data.firstName} ${user.data.lastName}', style:TextStyle(fontWeight: FontWeight.w600));
       }
     );
   }

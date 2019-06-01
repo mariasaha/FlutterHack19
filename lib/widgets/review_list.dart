@@ -16,7 +16,7 @@ class ReviewList extends StatelessWidget {
         return ListView.builder(
           itemCount: reviewList.data.length,
           itemBuilder: (BuildContext context, int inx) {
-            return ReviewWidget(review: reviewList.data[inx]);
+            return Container(padding: EdgeInsets.all(12.0), child: ReviewWidget(review: reviewList.data[inx]));
           },
         );
       },
