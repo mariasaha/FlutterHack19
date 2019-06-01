@@ -116,7 +116,7 @@ class ResourceTileState extends State<ResourceTile> {
 
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, right: 20.0),
-      child: Icon(icon, size: 50.0, color: Colors.lightBlue)
+      child: Icon(icon, size: 50.0, color: Colors.indigoAccent)
     );
   }
 
