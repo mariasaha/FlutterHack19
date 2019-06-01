@@ -94,21 +94,20 @@ class ResourceTileState extends State<ResourceTile> {
 
   Widget _buildIcon() {
     var icon;
-    switch (widget.resource.primaryType) {
-      case PrimaryType.blog:
-        icon = Icons.description;
-        break;
-      case PrimaryType.video:
-        icon = Icons.video_library;
-        break;
+    Random rnd;
+    int min = 1;
+    int max = 11;
+    rnd = new Random();
+    int r = min + rnd.nextInt(max - min);
 
-      case PrimaryType.audio:
-        icon = Icons.audiotrack;
-        break;
-
-      case PrimaryType.code:
-        icon = Icons.code;
-        break;
+    if (r < 3) {
+      icon = Icons.description;
+    } else if (r < 6) {
+      icon = Icons.video_library;
+    } else if (r < 9) {
+      icon = Icons.code;
+    } else {
+      icon = Icons.audiotrack;
     }
 
     return Padding(
