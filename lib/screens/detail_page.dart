@@ -10,14 +10,15 @@ import 'package:url_launcher/url_launcher.dart';
 class DetailPage extends StatelessWidget {
   Widget _buildTags(List<String> tags) {
     return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: tags.map((tag) => Chip(
-          label: Text(tag, style: TextStyle(color: Colors.white)),
-          backgroundColor: Colors.indigo,
-        )).toList(),
-      )
-    );
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: tags
+          .map((tag) => Chip(
+                label: Text(tag, style: TextStyle(color: Colors.white)),
+                backgroundColor: Colors.indigo,
+              ))
+          .toList(),
+    ));
   }
 
   Widget build(BuildContext context) {
@@ -33,72 +34,72 @@ class DetailPage extends StatelessWidget {
           final res = resource.data;
           final authorBloc = UserBloc(userId: res.authorId);
 
+          print("value ${res.averageRating.toDouble()}");
           return Scaffold(
-            //floatingActionButton:
-            appBar: AppBar(title: Text(res.title)),
-            body: Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 5),
-                    child: Text(res.title, style: TextStyle(fontSize: 20.0)),
-                  ),
-                  BoelensBlocProvider<UserBloc>(
-                    bloc: authorBloc,
-                    child: UserWidget(),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: FlutterRatingBarIndicator(
-                      rating: res.averageRating.toDouble(),
-                      itemCount: 5,
-                      itemSize: 15.0,
-                      fillColor: Colors.indigo,
-                      emptyColor: Colors.indigo.withAlpha(40),
+              //floatingActionButton:
+              appBar: AppBar(title: Text(res.title)),
+              body: Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 5),
+                      child: Text(res.title, style: TextStyle(fontSize: 20.0)),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-                    child: Text('${res.desc}', style: TextStyle(fontSize: 15.0)),
-                  ),
-                  Text('Dart Version:  ${res.dartVersion}'),
-                  Text('Flutter Version: ${res.flutterVersion}'),
-                  Text('Reported Difficulty: ${res.reportedDifficulty}'),
-                  Text('Publish Date: ${res.publishDate}'),
-                  SizedBox(height:10.0),
-                  GestureDetector(
-                    onTap: () {
-                      _launchInWebViewOrVC(res.repoUrl);
-                    },
-                    child: Text('Repo URL', style: TextStyle(color:Colors.blue)),
-                  ),
-                  SizedBox(height:10.0),
-                  GestureDetector(
-                    onTap: () { 
-                      _launchInWebViewOrVC(res.videoUrl);
-                    },
-                    child: Text('Link Video URL', style:TextStyle(color:Colors.blue)),
-                  ),
-                  SizedBox(height:10.0),
-                  _buildTags(res.tags),
-                  SizedBox(height: 30.0),
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/reviewlist');
-                    },
-                    child: Text('Reviews'),
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/addreview');
-                    },
-                    child: Text('Add Review'),
-                  )
-                ],
-              ),
-            )
-          );
+                    BoelensBlocProvider<UserBloc>(
+                      bloc: authorBloc,
+                      child: UserWidget(),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: FlutterRatingBarIndicator(
+                        rating: res.averageRating.toInt().toDouble(),
+                        itemCount: 5,
+                        itemSize: 25.0,
+                        fillColor: Colors.indigo,
+                        emptyColor: Colors.amber.withAlpha(40),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+                      child: Text('${res.desc}', style: TextStyle(fontSize: 15.0)),
+                    ),
+                    Text('Dart Version:  ${res.dartVersion}'),
+                    Text('Flutter Version: ${res.flutterVersion}'),
+                    Text('Reported Difficulty: ${res.reportedDifficulty}'),
+                    Text('Publish Date: ${res.publishDate}'),
+                    SizedBox(height: 10.0),
+                    GestureDetector(
+                      onTap: () {
+                        _launchInWebViewOrVC(res.repoUrl);
+                      },
+                      child: Text('Repo URL', style: TextStyle(color: Colors.blue)),
+                    ),
+                    SizedBox(height: 10.0),
+                    GestureDetector(
+                      onTap: () {
+                        _launchInWebViewOrVC(res.videoUrl);
+                      },
+                      child: Text('Link Video URL', style: TextStyle(color: Colors.blue)),
+                    ),
+                    SizedBox(height: 10.0),
+                    _buildTags(res.tags),
+                    SizedBox(height: 30.0),
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/reviewlist');
+                      },
+                      child: Text('Reviews'),
+                    ),
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/addreview');
+                      },
+                      child: Text('Add Review'),
+                    )
+                  ],
+                ),
+              ));
         });
   }
 
@@ -109,5 +110,4 @@ class DetailPage extends StatelessWidget {
       throw 'Could not launch $url';
     }
   }
-
 }
