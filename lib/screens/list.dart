@@ -17,6 +17,18 @@ class ListScreen extends StatelessWidget {
       245
     ),
     HardcodedResource(
+    'Flutter Tutorial for Beginners - Build iOS and Android Apps',
+    1,
+    1,
+    1,
+    '5.0',
+    '1.4.2',
+    PrimaryType.video,
+    ['list'],
+    'https://www.youtube.com/watch?v=GLSG_Wh_YWc',
+    89
+    ),
+    HardcodedResource(
       'Flutter Thursday 04: Beautiful List UI and Detail page (part 2)',
       5,
       6,
@@ -27,7 +39,7 @@ class ListScreen extends StatelessWidget {
       ['list'],
       'https://medium.com/@afegbua/this-is-the-second-part-of-the-beautiful-list-ui-and-detail-page-article-ecb43e203915',
       123
-    )
+    ),
   ];
 
   Widget _buildResource(BuildContext context, int index) {
