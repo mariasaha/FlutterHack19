@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'cell.dart';
 
 class Bubble extends StatefulWidget {
-  final String _bubbleText;
   final double _barWidth;
   final double _bubbleHeight;
   final double _bubbleWidth;
@@ -17,20 +16,8 @@ class Bubble extends StatefulWidget {
   final GlobalKey<BubbleState> key;
   final Function(int v) _onUpdate;
 
-  Bubble(
-      this.key,
-      this._bubbleText,
-      this._barWidth,
-      this._bubbleWidth,
-      this._bubbleHeight,
-      this._cellDataList,
-      this._pointBot,
-      this._strokeColor,
-      this._strokeWidth,
-      this._arrowWidth,
-      this._arrowHeight,
-      this._bubbleFontSize,
-      this._onUpdate)
+  Bubble(this.key, this._barWidth, this._bubbleWidth, this._bubbleHeight, this._cellDataList, this._pointBot,
+      this._strokeColor, this._strokeWidth, this._arrowWidth, this._arrowHeight, this._bubbleFontSize, this._onUpdate)
       : this._verticalFactor = _pointBot ? 1 : -1,
         super(key: key);
 

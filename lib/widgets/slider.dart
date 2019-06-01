@@ -13,7 +13,6 @@ class Gauge extends StatelessWidget {
   final double arrowWidth;
   final double arrowHeight;
   final double bubbleFontSize;
-  final String bubbleText;
   final int Function(int value) onUpdate;
 
   final topBubbleKey = GlobalKey<BubbleState>();
@@ -32,7 +31,6 @@ class Gauge extends StatelessWidget {
       @required this.arrowWidth,
       @required this.arrowHeight,
       @required this.bubbleFontSize,
-      @required this.bubbleText,
       @required this.onUpdate});
 
   @override
@@ -43,8 +41,8 @@ class Gauge extends StatelessWidget {
         // new Bubble(topBubbleKey, "Exciting ?", gaugeWidth, pointerFrameWidth, pointerFrameHeight, cellDataList, true,
         //     strokeColor, strokeWidth, arrowWidth, arrowHeight, bubbleFontSize),
         new Bar(gaugeWidth, barHeight, cellDataList, strokeColor, strokeWidth),
-        new Bubble(botBubbleKey, bubbleText, gaugeWidth, pointerFrameWidth, pointerFrameHeight, cellDataList, false,
-            strokeColor, strokeWidth, arrowWidth, arrowHeight, bubbleFontSize, onUpdate),
+        new Bubble(botBubbleKey, gaugeWidth, pointerFrameWidth, pointerFrameHeight, cellDataList, false, strokeColor,
+            strokeWidth, arrowWidth, arrowHeight, bubbleFontSize, onUpdate),
       ],
     );
   }
