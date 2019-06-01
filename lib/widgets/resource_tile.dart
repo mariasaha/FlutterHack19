@@ -27,12 +27,12 @@ class ResourceTileState extends State<ResourceTile> {
         break;
 
       case Level.intermediate:
-        color = Colors.yellow;
+        color = Colors.yellowAccent;
         text = 'Intermediate';
         break;
 
       case Level.advanced:
-        color = Colors.red;
+        color = Colors.redAccent;
         text = 'Advanced';
         break;
     }
@@ -43,8 +43,8 @@ class ResourceTileState extends State<ResourceTile> {
           flex: 1,
           child: Container(
             child: LinearProgressIndicator(
-              backgroundColor: Colors.white,
-              value: widget.resource.difficulty,
+              backgroundColor: Colors.black12,
+              value: widget.resource.difficulty / 10.0,
               valueColor: AlwaysStoppedAnimation(color)
             )
           )

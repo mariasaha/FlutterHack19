@@ -55,7 +55,6 @@ class ListScreen extends StatelessWidget {
   ];
 
   Widget _buildResource(BuildContext context, int index) {
-//    var text = _resources[index];
     return ResourceTile(resource: _resources[index]);
   }
 
